@@ -1,0 +1,13 @@
+{% extends "wiki/article_base.html" %}
+
+{% block wiki-title %}
+    {% if revision %}
+        {{ article_name }} (révision {{ revision }})
+    {% else %}
+        {{ article_name }}
+    {% endif %}
+{% endblock %}
+
+{% block wiki-article-content %}
+{{ content|safe }}
+{% endblock %}

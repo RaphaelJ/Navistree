@@ -1,0 +1,29 @@
+{% extends "manager/base.html" %}
+
+{% block manager-title %}Mon compte{% endblock %}
+
+{% block javascript %}
+<script type="text/javascript" src="https://www.google.com/jsapi"></script>
+<script type="text/javascript">
+    google.load('visualization', '1', {packages:['gauge']});
+    google.setOnLoadCallback(drawChart);
+    function drawChart() {
+        var data = new google.visualization.DataTable();
+        data.addColumn('string', 'Label');
+        data.addColumn('number', 'Value');
+        data.addRows(2);
+        data.setValue(0, 0, '');
+        data.setValue(0, 1, 80);
+
+        var chart = new google.visualization.Gauge(document.getElementById('chart_div'));
+        var options = {width: 75, height: 75, redFrom: 90, redTo: 100,
+            yellowFrom:75, yellowTo: 90, minorTicks: 5};
+        chart.draw(data, options);
+    }
+</script>
+{% endblock %}
+
+{% block manager-content %}
+    <h3>Espace disque</h3>
+    <div id="chart_div"></div>
+{% endblock %}

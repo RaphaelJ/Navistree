@@ -1,0 +1,50 @@
+{% extends "base.html" %}
+
+{% block page_title %}{% block content_title %}{% block title %}{% block manager-title %}{% endblock %} - Manager{% endblock %}{% endblock %}{% endblock %}
+
+{% block content %}
+    <ul class="manager_navigation_bar">
+        {% ifequal manager_page "account" %}
+            <li class="active">
+                <a href="{% url manager-account %}" class="account">Mon compte</a>
+            </li>
+        {% else %}
+            <li>
+                <a href="{% url manager-account %}" class="account">Mon compte</a>
+            </li>
+        {% endifequal %}
+
+        {% ifequal manager_page "domains" %}
+            <li class="active">
+                <a href="{% url manager-domains %}" class="domains">Domaines</a>
+            </li>
+        {% else %}
+            <li>
+                <a href="{% url manager-domains %}" class="domains">Domaines</a>
+            </li>
+        {% endifequal %}
+
+        {% ifequal manager_page "databases" %}
+            <li class="active">
+                <a href="{% url manager-databases %}" class="databases">Bases de données</a>
+            </li>
+        {% else %}
+            <li>
+                <a href="{% url manager-databases %}" class="databases">Bases de données</a>
+            </li>
+        {% endifequal %}
+
+        {% ifequal manager_page "operations" %}
+            <li class="active">
+                <a href="{% url manager-operations %}" class="operations">Opérations en cours</a>
+            </li>
+        {% else %}
+            <li>
+                <a href="{% url manager-operations %}" class="operations">Opérations en cours</a>
+            </li>
+        {% endifequal %}
+    </ul>
+
+    {% block manager-content %}
+    {% endblock %}
+{% endblock %}

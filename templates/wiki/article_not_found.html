@@ -1,0 +1,12 @@
+{% extends "wiki/article_base.html" %}
+
+{% block wiki-title %}{{ article_name }}{% endblock %}
+
+{% block wiki-article-content %}
+<h2>Il n'existe pas d'article à ce nom</h2>
+
+<p>
+    Vous pouvez rechercher « {{ article_name }} » dans le wiki.<br />
+    Vous pouvez <a href="{% url wiki-edit article_name %}">créer cet article</a> en partant d'une page vide.
+</p>
+{% endblock %}

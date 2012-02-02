@@ -1,0 +1,23 @@
+{% extends "base.html" %}
+
+{% block page_title %}{% block content_title %}{% block title %}Confirmation de l'incription{% endblock %}{% endblock %}{% endblock %}
+
+{% block content %}
+<img src="/static/img/user_new.png" class="category_icon">
+
+<p>
+    <strong>Félicitations !</strong>
+</p>
+
+<p>
+    Vous allez recevoir dans les minutes qui suivent un email confirmant votre
+    inscription à l'adresse <strong>{{ email }}</strong>.<br />
+    Il vous sera demandé d'effectuer <strong>une dernière tâche pour valider votre
+    compte</strong>. Vous disposez de 24h pour réaliser celle-ci.<br />
+    Vérifiez que l'email n'a pas été considéré comme <strong>courrier
+    indésirable</strong>.<br />
+    Si vous rencontrez des problèmes pour activer votre compte, tenter de contacter
+    un administrateur.
+</p>
+
+{% endblock %}

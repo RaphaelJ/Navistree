@@ -1,0 +1,12 @@
+Bonjour {{ user.username|escape }},
+
+Vous venez de créer un compte sur Navistree.org.
+
+Afin de finir l'inscription et activer votre compte, vous devez vous rendre avec
+votre navigateur Internet sur cette page : {{ url_confirmation }}.
+Vous disposez de {{ register_delay }} heures pour effectuer cette activation.
+
+Pour rappel, votre mot de passe est {{ password|escape }}.
+
+Cordialement,
+L'équipe d'administration de Navistree.org.

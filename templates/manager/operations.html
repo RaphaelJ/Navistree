@@ -1,0 +1,167 @@
+{% extends "manager/base.html" %}
+
+{% block manager-title %}Mes domaines - Opérations en cours{% endblock %}
+
+{% block manager-content %}
+
+<h3>Configuration</h3>
+
+<form method="post" action="{% url manager-operations %}">
+    {% csrf_token %}
+
+    <table>
+        {{ form.as_table }}
+    </table>
+
+    <input type="submit" value="Modifier" />
+</form>
+
+<h3>Dernières opérations</h3>
+
+<table>
+    <caption>
+        Opérations sur votre compte utilisateur
+    </caption>
+
+    <thead>
+        <tr>
+            <th style="width: 275px">Création</th>
+            <th style="width: 275px">Description</th>
+        </tr>
+    </thead>
+
+    <tbody>
+        {% for operation in operations_user %}
+            <tr class="{% cycle "odd" "even" %}">
+                <td style="text-align: left;">
+                    {% if operation.active %}
+                        <span class="icon_text"
+                              style="background-image: url('/static/img/operation.png')"
+                              title="L'opération est active">
+                            {{ operation.creation|date:"SHORT_DATETIME_FORMAT" }}
+                        </span>
+                    {% else %}
+                        <span class="icon_text"
+                              style="background-image: url('/static/img/operation_ok.png')"
+                              title="L'opération est terminée">
+                            {{ operation.creation|date:"SHORT_DATETIME_FORMAT" }}
+                        </span>
+                    {% endif %}
+                </td>
+                <td style="text-align: left">
+                    {{ operation.get_type_display }}
+                </td>
+            </tr>
+        {% empty %}
+            <tr>
+                <td colspan="2">
+                    Aucune opération sur votre utilisateur.
+                </td>
+            </tr>
+        {% endfor %}
+    </tbody>
+</table>
+
+<table>
+    <caption>
+        Opérations sur les domaines
+    </caption>
+
+    <thead>
+        <tr>
+            <th style="width: 200px">Création</th>
+            <th style="width: 200px">Domaine</th>
+            <th style="width: 200px">Description</th>
+        </tr>
+    </thead>
+
+    <tbody>
+        {% for operation in operations_domains %}
+            <tr class="{% cycle "odd" "even" %}">
+                <td style="text-align: left;">
+                    {% if operation.active %}
+                        <span class="icon_text"
+                              style="background-image: url('/static/img/operation.png')"
+                              title="L'opération est active">
+                            {{ operation.creation|date:"SHORT_DATETIME_FORMAT" }}
+                        </span>
+                    {% else %}
+                        <span class="icon_text"
+                              style="background-image: url('/static/img/operation_ok.png')"
+                              title="L'opération est terminée">
+                            {{ operation.creation|date:"SHORT_DATETIME_FORMAT" }}
+                        </span>
+                    {% endif %}
+                </td>
+                <td style="text-align: left;">
+                    <span class="icon_text"
+                          style="background-image: url('{{ operation.domain.icon_url }}')">
+                        {{ operation.domain.name }}
+                    </span>
+                </td>
+                <td style="text-align: left">
+                    {{ operation.get_type_display }}
+                </td>
+            </tr>
+        {% empty %}
+            <tr>
+                <td colspan="3">
+                    Aucune opération sur les domaines.
+                </td>
+            </tr>
+        {% endfor %}
+    </tbody>
+</table>
+
+<table>
+    <caption>
+        Opérations sur les hôtes
+    </caption>
+
+    <thead>
+        <tr>
+            <th style="width: 200px">Création</th>
+            <th style="width: 200px">Hôte</th>
+            <th style="width: 200px">Description</th>
+        </tr>
+    </thead>
+
+    <tbody>
+        {% for operation in operations_hosts %}
+            <tr class="{% cycle "odd" "even" %}">
+                <td style="text-align: left;">
+                    {% if operation.active %}
+                        <span class="icon_text"
+                              style="background-image: url('/static/img/operation.png')"
+                              title="L'opération est active">
+                            {{ operation.creation|date:"SHORT_DATETIME_FORMAT" }}
+                        </span>
+                    {% else %}
+                        <span class="icon_text"
+                              style="background-image: url('/static/img/operation_ok.png')"
+                              title="L'opération est terminée">
+                            {{ operation.creation|date:"SHORT_DATETIME_FORMAT" }}
+                        </span>
+                    {% endif %}
+                </td>
+                <td style="text-align: left;">
+                    <span class="icon_text"
+                          style="background-image: url('{{ operation.host.icon_url }}')">
+                        {{ operation.host.full_name }}
+                    </span>
+                </td>
+                <td style="text-align: left">
+                    {{ operation.get_type_display }}
+                </td>
+            </tr>
+        {% empty %}
+            <tr>
+                <td colspan="3">
+                    Aucune opération sur les hôtes.
+                </td>
+            </tr>
+        {% endfor %}
+    </tbody>
+</table>
+
+{% endblock %}

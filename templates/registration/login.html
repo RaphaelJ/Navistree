@@ -1,0 +1,18 @@
+{% extends "base.html" %}
+
+{% block page_title %}{% block content_title %}{% block title %}Connexion{% endblock %}{% endblock %}{% endblock %}
+
+{% block content %}
+
+<form method="post" action="{% url login %}">
+    {% csrf_token %}
+    <table>
+        {{ form.as_table }}
+    </table>
+
+    <input type="hidden" name="next" value="{{ next }}" />
+
+    <input type="submit" value="Connexion" />
+    <a href="{% url password-reset %}" style="padding-left: 15px">Mot de passe perdu</a>
+</form>
+{% endblock %}

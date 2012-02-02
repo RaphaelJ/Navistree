@@ -1,0 +1,359 @@
+{% extends "base.html" %}
+
+{% block page_title %}{% block content_title %}{% block title %}Offres{% endblock %}{% endblock %}{% endblock %}
+
+{% block content %}
+<table class="offers">
+    <caption>
+        Limites des offres d'hébergement
+    </caption>
+    <tfoot>
+        <tr>
+            <td colspan="3" class="invisible">* publicité de type Google Adsense, à placer vous même sur votre page d'accueil</td>
+        </tr>
+    </tfoot>
+    <thead>
+        <tr>
+            <th class="invisible"></th>
+            <th class="invisible" colspan="2">Offres</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr>
+            <th class="invisible"></th>
+            <th>Sans publicité</th>
+            <th>Avec publicité*</th>
+            </tr>
+        <tr>
+            <th>Espace disque</th>
+            <td>150 Mio</td>
+            <td>2 Gio</td>
+        </tr>
+        <tr>
+            <th>Traffic mensuel</th>
+            <td>15 Gio</td>
+            <td>Illimité</td>
+        </tr>
+        <tr>
+            <th>Connexions à la BDD</th>
+            <td>5 simultanées</td>
+            <td>Illimitées</td>
+        </tr>
+    </tbody>
+</table>
+
+<h2>Fonctionnalités communes</h2>
+<table class="features">
+    <caption>Principales fonctionnalités</caption>
+    <tr>
+        <td>
+            <a onclick="show_details_table();" href="#ruby">
+                <span class="title" style="background-image:url('/static/img/features/ruby.png');">
+                    Ruby
+                </span>
+            </a>
+        </td>
+        <td>
+            <a onclick="show_details_table();" href="#python">
+                <span class="title" style="background-image:url('/static/img/features/python.png');">
+                    Python
+                </span>
+            </a>
+        </td>
+        <td>
+            <a onclick="show_details_table();" href="#php">
+                <span class="title" style="background-image:url('/static/img/features/php.png');">
+                    PHP
+                </span>
+            </a>
+        </td>
+    </tr>
+
+    <tr>
+        <td>
+            <a onclick="show_details_table();" href="#pgsql">
+                <span class="title" style="background-image:url('/static/img/features/pgsql.png');">
+                    PostgreSQL
+                </span>
+            </a>
+        </td>
+        <td>
+            <a onclick="show_details_table();" href="#sqlite">
+                <span class="title" style="background-image:url('/static/img/features/sqlite.png');">
+                    SQLite
+                </span>
+            </a>
+        </td>
+        <td>
+            <a onclick="show_details_table();" href="#mysql">
+                <span class="title" style="background-image:url('/static/img/features/mysql.png');">
+                    MySQL
+                </span>
+            </a>
+        </td>
+    </tr>
+
+    <tr>
+        <td>
+            <a onclick="show_details_table();" href="#system">
+                <span class="title" style="background-image:url('/static/img/features/domaines.png');">
+                    Domaines
+                </span>
+            </a>
+        </td>
+        <td>
+            <a onclick="show_details_table();" href="#aspnet">
+                <span class="title" style="background-image:url('/static/img/features/aspnet.png');">
+                    ASP.net
+                </span>
+            </a>
+        </td>
+        <td>
+            <a onclick="show_details_table();" href="#system">
+                <span class="title" style="background-image:url('/static/img/features/backups.png');">
+                    Backups
+                </span>
+            </a>
+        </td>
+    </tr>
+    <tr>
+        <td>
+            <a onclick="show_details_table();" href="#system">
+                <span class="title" style="background-image:url('/static/img/features/ssh.png');">
+                    Accès SSH
+                </span>
+            </a>
+        </td>
+        <td>
+            <a onclick="show_details_table();" href="#system">
+                <span class="title" style="background-image:url('/static/img/features/ftp.png');">
+                    Accès FTP
+                </span>
+            </a>
+        </td>
+        <td>
+            <a onclick="show_details_table();" href="#system">
+                <span class="title" style="background-image:url('/static/img/features/email.png');">
+                    E-mail
+                </span>
+            </a>
+        </td>
+    </tr>
+</table>
+
+<div class="details_button">
+    <span class="button" id="details_table_button" onclick="show_hide_details_table_toggle_button(this);">Afficher les détails</span>
+</div>
+
+<table class="details" id="details_table" style="display: none">
+    <thead id="system">
+        <tr>
+            <th>Système de base</th>
+            <th>Sans publicité</th>
+            <th>Avec publicité</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr>
+            <th>Système d'exploitation</th>
+            <td colspan="2">Arch Linux (noyau Linux {{ versions.linux }})</td>
+        </tr>
+        <tr>
+            <th>Espace disque</th>
+            <td>150 Mio</td>
+            <td>2 Gio</td>
+        </tr>
+        <tr>
+            <th>Traffic mensuel</th>
+            <td>15 Gio</td>
+            <td>Illimité</td>
+        </tr>
+        <tr>
+            <th>Acces FTP</th>
+            <td colspan="2">Oui</td>
+        </tr>
+        <tr>
+            <th>Sous domaine</th>
+            <td colspan="2">Oui</td>
+        </tr>
+        <tr>
+            <th>Domaine personnel</th>
+            <td>Un seul</td>
+            <td>Plusieurs</td>
+        </tr>
+        <tr>
+            <th>Manager</th>
+            <td colspan="2">Domaines, type d'offre, bases de données</td>
+        </tr>
+        <tr>
+            <th>Backups</th>
+            <td>Toutes les semaines</td>
+            <td>Tous les jours</td>
+        </tr>
+    </tbody>
+
+    <thead id="ruby">
+        <tr>
+            <th>Ruby</th>
+            <th>Sans publicité</th>
+            <th>Avec publicité</th>
+        </tr>
+    </thead>
+    </tbody>
+        <tr>
+            <th>Version</th>
+            <td colspan="2">{{ versions.ruby }}</td>
+        </tr>
+        <tr>
+            <th>Ruby on Rails</th>
+            <td colspan="2">{{ versions.rails }}</td>
+        </tr>
+    </tbody>
+
+    <thead id="python">
+        <tr>
+            <th>Python</th>
+            <th>Sans publicité</th>
+            <th>Avec publicité</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr>
+            <th>Version</th>
+            <td colspan="2">{{ versions.python3 }} et {{ versions.python2 }}</td>
+        </tr>
+        <tr>
+            <th>mod_wsgi</th>
+            <td colspan="2">{{ versions.mod_wsgi }}</td>
+        </tr>
+        <tr>
+            <th>Django</th>
+            <td colspan="2">{{ versions.django }}</td>
+        </tr>
+    </tbody>
+
+    <thead id="aspnet">
+        <tr>
+            <th>ASP.net</th>
+            <th>Sans publicité</th>
+            <th>Avec publicité</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr>
+            <th>Mono/mod_mono</th>
+            <td colspan="2">{{ versions.mono }}</td>
+        </tr>
+    </tbody>
+
+    <thead id="php">
+        <tr>
+            <th>PHP</th>
+            <th>Sans publicité</th>
+            <th>Avec publicité</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr>
+            <th>Version</th>
+            <td colspan="2">{{ versions.php }}</td>
+        </tr>
+        <tr>
+            <th>GD</th>
+            <td colspan="2">Oui</td>
+        </tr>
+    </tbody>
+
+    <thead id="pgsql">
+        <tr>
+            <th>PostgreSQL</th>
+            <th>Sans publicité</th>
+            <th>Avec publicité</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr>
+            <th>Version</th>
+            <td colspan="2">{{ versions.pgsql }}</td>
+        </tr>
+        <tr>
+            <th>Nombre de bases</th>
+            <td>1</td>
+            <td>Illimité</td>
+        </tr>
+        <tr>
+            <th>Taille max. des BDD</th>
+            <td colspan="2">Illimitée</td>
+        </tr>
+        <tr>
+            <th>Connexions simultanées</th>
+            <td>5</td>
+            <td>Illimitées</td>
+        </tr>
+        <tr>
+            <th>Utilisateur distant</th>
+            <td>Non</td>
+            <td>Oui (facultatif)</td>
+        </tr>
+    </tbody>
+
+    <thead id="sqlite">
+        <tr>
+            <th>SQLite</th>
+            <th>Sans publicité</th>
+            <th>Avec publicité</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr>
+            <th>Version</th>
+            <td colspan="2">{{ versions.sqlite }}</td>
+        </tr>
+        <tr>
+            <th>Nombre de bases</th>
+            <td colspan="2">Illimité</td>
+        </tr>
+        <tr>
+            <th>Taille max. des BDD</th>
+            <td colspan="2">Egale à l'espace disque</td>
+        </tr>
+        <tr>
+            <th>Connexions simultanées</th>
+            <td colspan="2">Illimitées</td>
+        </tr>
+    </tbody>
+
+    <thead id="mysql">
+        <tr>
+            <th>MySQL</th>
+            <th>Sans publicité</th>
+            <th>Avec publicité</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr>
+            <th>Version</th>
+            <td colspan="2">{{ versions.mysql }}</td>
+        </tr>
+        <tr>
+            <th>Nombre de bases</th>
+            <td>1</td>
+            <td>Illimité</td>
+        </tr>
+        <tr>
+            <th>Taille max. des BDD</th>
+            <td colspan="2">Illimitée</td>
+        </tr>
+        <tr>
+            <th>Connexions simultanées</th>
+            <td>5</td>
+            <td>Illimitées</td>
+        </tr>
+        <tr>
+            <th>Utilisateur distant</th>
+            <td>Non</td>
+            <td>Oui (facultatif)</td>
+        </tr>
+    </tbody>
+</table>
+{% endblock %}

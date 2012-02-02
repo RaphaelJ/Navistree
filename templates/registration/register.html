@@ -1,0 +1,15 @@
+{% extends "base.html" %}
+
+{% block page_title %}{% block content_title %}{% block title %}Inscription{% endblock %}{% endblock %}{% endblock %}
+
+{% block content %}
+<form action="{% url register %}" method="post">
+    {% csrf_token %}
+
+    <table>
+        {{ form.as_table }}
+    </table>
+
+    <input type="submit" value="S'inscrire">
+  </form>
+{% endblock %}

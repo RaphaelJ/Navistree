@@ -1,0 +1,59 @@
+{% extends "base.html" %}
+
+{% block page_title %}{% block content_title %}{% block title %}{% block wiki-title %}{% endblock %} - Wiki{% endblock %}{% endblock %}{% endblock %}
+
+{% block content %}
+<ul class="wiki_navigation_bar">
+    {% if article_name == "Home" and not revision %}
+        <li {% ifequal wiki_page "article" %}class="active"{% endifequal %}>
+                <a href="{% url wiki %}" class="home">Accueil</a>
+        </li>
+    {% else %}
+        <li>
+            <a href="{% url wiki %}" class="home">Accueil</a>
+        </li>
+
+        
+        {% if revision %}
+            <li {% ifequal wiki_page "article" %}class="active"{% endifequal %}>
+                <a href="{% url wiki-article-revision article_name revision %}" class="article">Article</a>
+            </li>
+        {% else %}
+            <li {% ifequal wiki_page "article" %}class="active"{% endifequal %}>
+                <a href="{% url wiki-article article_name %}" class="article">Article</a>
+            </li>
+        {% endif %}
+    {% endif %}
+
+    {% if article_exists %}
+        {% if revision %}
+            <li {% ifequal wiki_page "edit" %}class="active"{% endifequal %}>
+                <a href="{% url wiki-edit-revision article_name revision %}" class="edit">Edition</a>
+            </li>
+        {% else %}
+            <li {% ifequal wiki_page "edit" %}class="active"{% endifequal %}>
+                <a href="{% url wiki-edit article_name %}" class="edit">Edition</a>
+            </li>
+        {% endif %}
+
+        <li {% ifequal wiki_page "revisions" %} class="active"{% endifequal %}>
+            <a href="{% url wiki-revisions article_name %}" class="revisions">Révisions</a>
+        </li>
+    {% else %}
+        <li {% ifequal wiki_page "edit" %}class="active"{% endifequal %}>
+                <a href="{% url wiki-edit article_name %}" class="edit">Créer</a>
+            </li>
+    {% endif %}
+
+    <li>
+        <a href="{% url manager-operations %}" class="articles">Liste des articles</a>
+    </li>
+    <li>
+        <a href="{% url manager-operations %}" class="search">Rechercher</a>
+    </li>
+</ul>
+
+{% block wiki-article-content %}
+{% endblock %}
+
+{% endblock %}

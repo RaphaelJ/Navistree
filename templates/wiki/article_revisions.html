@@ -1,0 +1,18 @@
+{% extends "wiki/article_base.html" %}
+
+{% block wiki-title %}Révisions de {{ article_name }}{% endblock %}
+
+{% block wiki-article-content %}
+<ul>
+    {% for revision in revisions %}
+        <li>
+            {{ revision.creation|date:"SHORT_DATETIME_FORMAT" }}
+            par {{ revision.user.username }} ({{ revision.content|length }} caractères).
+            <a href="{% url wiki-article-revision article_name revision.id %}">Consulter</a> -
+            <a href="{% url wiki-edit-revision article_name revision.id %}">Editer</a> -
+            <a href="{% url wiki-differences-revision article_name revision.id %}">Différences</a> -
+            <a>Restaurer</a>
+        </li>
+    {% endfor %}
+</ul>
+{% endblock %}

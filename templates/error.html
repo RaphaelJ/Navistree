@@ -1,0 +1,12 @@
+{% extends "base.html" %}
+
+{% block page_title %}{% block content_title %}{% block title %}Une erreur s'est produite !{% endblock %}{% endblock %}{% endblock %}
+
+{% block content %}
+<img src="/static/img/error.png" class="category_icon">
+
+<p>
+    {{ message|safe }}
+</p>
+
+{% endblock %}

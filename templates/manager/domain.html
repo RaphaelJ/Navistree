@@ -1,0 +1,86 @@
+{% extends "manager/base.html" %}
+
+{% block manager-title %}Mes domaines - Hôtes de {{ domain.name }}{% endblock %}
+
+{% block manager-content %}
+
+<h3>Liste des hôtes du domaine {{ domain.name }}</h3>
+
+<table>
+    <caption>
+        Liste des hôtes
+    </caption>
+
+    <thead>
+        <tr>
+            <th style="width: 275px">Nom d'hôte</th>
+            <th style="width: 275px">Cible</th>
+            <th>Actions</th>
+        </tr>
+    </thead>
+
+    <tbody>
+        {% for host in hosts %}
+            <tr class="{% cycle "odd" "even" %}">
+                <td style="text-align: left">
+
+                    {% if host.ongoing_operation %}
+                        <span class="operation_icon"
+                              title="Il y a une opération en cours sur cette hôte">
+                            <span class="icon_text"
+                                  style="background-image: url('{{ host.icon_url }}')">
+                                {{ host.full_name }}
+                            </span>
+                        </span>
+                    {% else %}
+                        <span class="icon_text"
+                              style="background-image: url('{{ host.icon_url }}')">
+                            {{ host.full_name }}
+                        </span>
+                    {% endif %}
+                </td>
+                <td style="text-align: left">
+                    {% if host.path_exists %}
+                        {{ host.path }}
+                    {% else %}
+                        <span class="icon_text"
+                              style="background-image: url('/static/img/warning.png')"
+                              title="Le dossier n'existe pas">
+                            {{ host.path }}
+                        </span>
+                    {% endif %}
+                </td>
+                <td style="text-align: right">
+                    <a class="button" href="{% url manager-domains-host host.id %}">
+                        Modifier
+                    </a>
+                    <a class="button"
+                       href="{% url manager-domains-host-delete host.id %}"
+                       onclick="return confirm('Supprimer l\'hôte ?');">
+                        Supprimer
+                    </a>
+                </td>
+            </tr>
+        {% empty %}
+            <tr>
+                <td colspan="3">
+                    Le domaine ne contient aucune hôte.
+                </td>
+            </tr>
+        {% endfor %}
+    </tbody>
+</table>
+
+<h3>Ajouter une hôte</h3>
+
+<form method="post" id="new_host" action="{% url manager-domains-hosts domain.id %}#new_host">
+    {% csrf_token %}
+
+    <table>
+        {{ new_host_form.as_table }}
+    </table>
+
+    <input type="submit" value="Ajouter" />
+</form>
+
+{% endblock %}

@@ -1,0 +1,30 @@
+{% extends "wiki/article_base.html" %}
+
+{% block wiki-title %}
+    {% if revision %}
+        Edition de {{ article_name }} (révision {{ revision }})
+    {% else %}
+        Edition de {{ article_name }}
+    {% endif %}
+{% endblock %}
+
+{% block wiki-article-content %}
+
+{% if preview %}
+    <h2>Prévisualisation</h2>
+
+    {{ preview|safe }}
+{% endif %}
+
+<form method="post" action="{% url wiki-edit article_name %}">
+    {% csrf_token %}
+
+    <table>
+        {{ form.as_table }}
+    </table>
+
+    <input type="submit" name="preview" value="Prévisualiser" />
+    <input type="submit" name="save" value="Enregistrer" />
+</form>
+
+{% endblock %}
